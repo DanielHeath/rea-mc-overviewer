@@ -23,6 +23,10 @@ aws s3 sync \
   s3://rea-minecraft-overviewer/backup "$HOST/$WORLD/"
 
 # Get from ftp (slow but only has to get things that have changed)
+# Allow some failures due to things getting modified while they're downloaded.
+wget --mirror "ftp://$USER:$PASS@$HOST/$WORLD" || sleep 10
+wget --mirror "ftp://$USER:$PASS@$HOST/$WORLD" || sleep 10
+wget --mirror "ftp://$USER:$PASS@$HOST/$WORLD" || sleep 10
 wget --mirror "ftp://$USER:$PASS@$HOST/$WORLD"
 
 # Push the world back to S3

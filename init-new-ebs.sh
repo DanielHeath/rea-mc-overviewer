@@ -5,7 +5,7 @@ set -ex # No more errors from here.
 echo 'deb http://overviewer.org/debian ./' >> /etc/apt/sources.list
 wget -O - http://overviewer.org/debian/overviewer.gpg.asc | sudo apt-key add -
 apt-get update
-apt-get install -y minecraft-overviewer awscli cloud-utils
+apt-get install -y minecraft-overviewer awscli cloud-utils htop
 
 mkdir -p /home/ubuntu/minecraft/
 cd /home/ubuntu/minecraft/

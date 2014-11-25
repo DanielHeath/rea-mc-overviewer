@@ -70,6 +70,8 @@ do
   sleep 10
 done
 
+echo $INSTANCE_ID
+
 echo "Network interface is:"
 aws \
   ec2 \
@@ -77,7 +79,6 @@ aws \
   --instance-id $INSTANCE_ID \
   --query 'Reservations[0].Instances[0].NetworkInterfaces[0].Association.PublicIp'
 
-i-4eca5981
 # Check if it's shut down yet
 function status {
   aws \
@@ -94,11 +95,17 @@ function status {
 # 48 : terminated
 # 64 : stopping
 # 80 : stopped
-while [ `status` -lt "30" ]
+
+# Wait for status to return a non-empty result
+while [ -z `status` ]
 do
   sleep 10
 done
 
+while [ `status` -lt "30" ]
+do
+  sleep 10
+done
 
 aws ec2 get-console-output \
   --instance-id $INSTANCE_ID

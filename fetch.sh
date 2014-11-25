@@ -32,6 +32,8 @@ aws s3 sync \
   "$HOST/$WORLD" s3://rea-minecraft-overviewer/backup
 
 wget https://raw.githubusercontent.com/DanielHeath/rea-mc-overviewer/gh-pages/overviewer.conf -O /home/ubuntu/minecraft/overviewer.conf
+mkdir -p /home/ubuntu/minecraft/web-assets/
+wget https://raw.githubusercontent.com/DanielHeath/rea-mc-overviewer/gh-pages/replacement-index.html -O /home/ubuntu/minecraft/web-assets/index.html
 
 # Get the tiles we've already rendered back from S3
 aws s3 sync \

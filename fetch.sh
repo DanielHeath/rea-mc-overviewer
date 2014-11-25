@@ -8,6 +8,7 @@ source creds
 
 trap 'poweroff' EXIT
 
+apt-get update
 apt-get install -y cloud-utils
 EC2_INSTANCE_ID=$(ec2metadata --instance-id)
 
